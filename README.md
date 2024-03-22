@@ -87,6 +87,9 @@ set -g @tmux_power_theme '#483D8B' # dark slate blue
 set -g @tmux_power_fg '#ffffff' # white
 set -g @tmux_power_bg '#000000' # black
 
+# Synchronized Panes color
+set -g @tmux_power_sync 'red'
+
 # Greys
 set -g @tmux_power_g01 "#080808"
 set -g @tmux_power_g02 "#121212"
@@ -119,6 +122,8 @@ set -g @tmux_power_date_icon ' '
 set -g @tmux_power_time_icon ' '
 set -g @tmux_power_user_icon ' '
 set -g @tmux_power_session_icon ' '
+set -g @tmux_power_zoom_icon ''
+set -g @tmux_power_sync_icon ''
 set -g @tmux_power_show_upload_speed    true
 set -g @tmux_power_show_download_speed  true
 set -g @tmux_power_show_web_reachable   true

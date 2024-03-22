@@ -27,6 +27,8 @@ session_icon="$(tmux_get '@tmux_power_session_icon' '')"
 user_icon="$(tmux_get '@tmux_power_user_icon' '')"
 time_icon="$(tmux_get '@tmux_power_time_icon' '')"
 date_icon="$(tmux_get '@tmux_power_date_icon' '')"
+zoom_icon="$(tmux_get '@tmux_power_zoom_icon' '')"
+sync_icon="$(tmux_get '@tmux_power_sync_icon' '')"
 show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 show_web_reachable="$(tmux_get @tmux_power_show_web_reachable false)"
@@ -83,6 +85,7 @@ G12=$(tmux_get @tmux_power_g12 "#767676") #243
 
 FG=$(tmux_get @tmux_power_fg "$G10")
 BG=$(tmux_get @tmux_power_bg "$G04")
+SYNC=$(tmux_get @tmux_power_sync "red")
 
 # Status options
 tmux_set status-interval 1
@@ -135,8 +138,8 @@ fi
 tmux_set status-right "$RS"
 
 # Window status format
-tmux_set window-status-format         "#[fg=$BG,bg=$G06]$rarrow#[fg=$TC,bg=$G06] #I:#W#F #[fg=$G06,bg=$BG]$rarrow"
-tmux_set window-status-current-format "#[fg=$BG,bg=$TC]$rarrow#[fg=$BG,bg=$TC,bold] #I:#W#F #[fg=$TC,bg=$BG,nobold]$rarrow"
+tmux_set window-status-format         "#[fg=$BG,bg=$G06]$rarrow#[fg=$TC,bg=$G06] #I:#W #[fg=$G06,bg=$BG]$rarrow"
+tmux_set window-status-current-format "#[fg=$BG,#{?pane_synchronized,bg=$SYNC,bg=$TC}]$rarrow#[fg=$BG,#{?pane_synchronized,bg=$SYNC,bg=$TC},bold] #I:#W#{?window_zoomed_flag, $zoom_icon,}#{?pane_synchronized, $sync_icon,} #[#{?pane_synchronized,fg=$SYNC,fg=$TC},bg=$BG,nobold]$rarrow"
 
 # Window status style
 tmux_set window-status-style          "fg=$TC,bg=$BG,none"
@@ -150,7 +153,7 @@ tmux_set window-status-separator ""
 tmux_set pane-border-style "fg=$G07,bg=default"
 
 # Active pane border
-tmux_set pane-active-border-style "fg=$TC,bg=default"
+tmux_set pane-active-border-style "#{?pane_synchronized,fg=$SYNC,fg=$TC},bg=default"
 
 # Pane number indicator
 tmux_set display-panes-colour "$G07"
