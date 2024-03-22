@@ -77,7 +77,7 @@ something like [pywal](https://github.com/dylanaraps/pywal) for instance.
 
 ### ⚙  Customizing
 
-You can define your favourite colors if you don't like any of above.
+You can define custom colors using the following options:
 
 ```tmux
 # Main color
@@ -112,8 +112,23 @@ set -g @tmux_power_date_format '%F'
 set -g @tmux_power_time_format '%T'
 ```
 
-You can also customize the icons. As an example,
-the following configurations can generate the theme shown in the first screenshot:
+You can also customize the icons:
+
+```tmux
+set -g @tmux_power_right_arrow_icon ''
+set -g @tmux_power_left_arrow_icon ''
+set -g @tmux_power_upload_speed_icon '󰕒'
+set -g @tmux_power_download_speed_icon '󰇚'
+set -g @tmux_power_session_icon ''
+set -g @tmux_power_user_icon ''
+set -g @tmux_power_time_icon ''
+set -g @tmux_power_date_icon ''
+set -g @tmux_power_zoom_icon '󰁌'
+set -g @tmux_power_sync_icon ''
+```
+
+As an example, the following configurations can generate the theme shown in the first screenshot:
+
 ```bash
 set -g @plugin 'wfxr/tmux-power'
 set -g @plugin 'wfxr/tmux-net-speed'
